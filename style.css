@@ -1,4 +1,30 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  background: url(./img/MarioBackground.jpg);
+  /* background-size: cover;  */
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+#board {
+  width: 540px;
+  height: 540px;
+  /* background-color: green; */
+
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  background: url(./img/soil.png);
+  background-size: cover;
+  border: 3px solid #fff;
+
+}
+#board div {
+  /* board = 540x540, divided into 3x3 tiles > 180x180 per div*/
+  width: 180px;
+  height: 180px;
+  background-image: url(./img/GreenPipe.png);
+  background-size: cover;
 }
