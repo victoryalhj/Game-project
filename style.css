@@ -28,3 +28,8 @@ body {
   background-image: url(./img/GreenPipe.png);
   background-size: cover;
 }
+#board div img {
+  /* all img tags inside the tile div tags */
+  width: 100px;
+  height: 100px;
+}
