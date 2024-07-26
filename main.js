@@ -1,6 +1,7 @@
 let currentMoleTile;
 let currPlantTile;
-
+let score = 0;
+let gameOver = false;
 
 window.onload = function() {
   setGame();
@@ -12,6 +13,7 @@ function setGame() {
     // <div id="0-8"></div>  
     let tile = document.createElement("div");
     tile.id = i.toString();
+    tile.addEventListener("click", selectTile);
     document.getElementById("board").appendChild(tile)
   }
   setInterval(setMole, 2000); //2000 milliseconds = 2 seconds
@@ -26,6 +28,10 @@ function getRandomTile() {
 
 
 function setMole() {
+  //Gameover
+  if(gameOver) {
+    return;
+  }
   //reset mole  
   if(currentMoleTile) {
     currentMoleTile.innerHTML = "";
@@ -44,6 +50,9 @@ function setMole() {
 }
 
 function setPlant() {
+  if (gameOver) {
+    return;
+  }
   if (currPlantTile) {
     currPlantTile.innerHTML = "";
   }
@@ -57,4 +66,18 @@ function setPlant() {
   }
   currPlantTile = document.getElementById(num);
   currPlantTile.appendChild(plant);
+}
+
+// Tile clickable
+function selectTile () {
+  if (gameOver) {
+    return;
+  }
+  if(this == currentMoleTile) {
+    score += 10;
+    document.getElementById("score").innerText = "Your Score: " + score.toString();
+  } else if (this == currPlantTile) {
+    document.getElementById("score").innerText = "GAME OVER: " +  score.toString();
+    gameOver = true;
+  }
 }

@@ -32,4 +32,10 @@ body {
   /* all img tags inside the tile div tags */
   width: 100px;
   height: 100px;
+  /* Disable dragging */
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
