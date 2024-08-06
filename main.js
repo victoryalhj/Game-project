@@ -1,3 +1,6 @@
+// Set Timer
+// Various types of tiles
+
 let currentMoleTile;
 let currPlantTile;
 let score = 0;
