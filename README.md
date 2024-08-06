@@ -1,9 +1,9 @@
 # GAME
 
 <div align=center>
-<img src="./" alt="Website" width="600px"/>
+<img src="./img/MarioGame.png" alt="Website" width="600px"/>
 
-### [ Website ](https://victoryalhj.netlify.app/)
+### [ Demo Website ](https://molegameproject.netlify.app/)
 </div>
 
 <br />
