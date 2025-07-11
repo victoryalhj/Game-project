@@ -30,9 +30,9 @@ function setGame() {
 // timer
 function startTimer() {
   document.getElementById("timer").innerText = `Time left: ${timeLeft}s`;
-  timerInterval = setInterval(()=>{
+  timeInterval = setInterval(()=>{
     if (gameOver) {
-      clearInterval(timerInterval);
+      clearInterval(timeInterval);
       return;
     }
     timeLeft--;
