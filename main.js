@@ -4,6 +4,8 @@
 let currentMoleTile;
 let currPlantTile;
 let score = 0;
+let timeLeft = 60;
+let timeInterval ;
 let gameOver = false;
 
 window.onload = function() {
@@ -21,7 +23,29 @@ function setGame() {
   }
   setInterval(setMole, 2000); //2000 milliseconds = 2 seconds
   setInterval(setPlant, 3000);
+
+  startTimer();
 }
+
+// timer
+function startTimer() {
+  document.getElementById("timer").innerText = `Time left: ${timeLeft}s`;
+  timerInterval = setInterval(()=>{
+    if (gameOver) {
+      clearInterval(timerInterval);
+      return;
+    }
+    timeLeft--;
+    document.getElementById("timer").innerText = `Time left: ${timeLeft}s`
+ 
+    if (timeLeft <= 0) {
+      gameOver = true;
+      document.getElementById("score").innerText = `GAME OVER: ${score}`;
+      clearInterval(timeInterval);
+    }
+  },1000);
+}
+
 
 function getRandomTile() {
   //math.random > (0-1)*9 = 0 -9 > round down to (0-8) integers
@@ -31,7 +55,7 @@ function getRandomTile() {
 
 
 function setMole() {
-  //Gameover
+  //GameOver
   if(gameOver) {
     return;
   }
