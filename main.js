@@ -6,6 +6,8 @@ let currPlantTile;
 let score = 0;
 let timeLeft = 60;
 let timeInterval ;
+let level = 1;
+let minMoleSpeed = 500;
 let gameOver = false;
 
 window.onload = function() {
@@ -44,6 +46,25 @@ function startTimer() {
       clearInterval(timeInterval);
     }
   },1000);
+}
+
+// level
+function updateLevel() {
+  let newLevel = Math.floor(score/100) +1;
+  console.log(`score:${score},calculated level: ${newLevel}`)
+  if (newLevel > level) {
+    level = newLevel;
+    showLevelUpMessage();
+    // updateSpeed();
+    updateLevelDisplay();
+  }
+}
+function showLevelUpMessage(){
+  alert(`Level up! You are now at Level ${level}`)
+}
+function updateLevelDisplay() {
+  document.getElementById("level").innerText = `Your Level: ${level}`;
+
 }
 
 
@@ -103,6 +124,8 @@ function selectTile () {
   if(this == currentMoleTile) {
     score += 10;
     document.getElementById("score").innerText = "Your Score: " + score.toString();
+    
+    updateLevel();
   } else if (this == currPlantTile) {
     document.getElementById("score").innerText = "GAME OVER: " +  score.toString();
     gameOver = true;
