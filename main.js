@@ -7,11 +7,26 @@ let score = 0;
 let timeLeft = 60;
 let timeInterval ;
 let level = 1;
+let moleSpeed = 2000;
 let minMoleSpeed = 500;
+let moleTimeout;
 let gameOver = false;
 
 window.onload = function() {
   setGame();
+}
+
+function startMole() {
+  setMole();
+  moleTimeout = setTimeout(startMole, moleSpeed)
+}
+
+//speed
+function updateSpeed() {
+  moleSpeed = Math.max(2000 - (level-1)*200,minMoleSpeed);
+  console.log(`Level ${level}:moleSpeed is now ${moleSpeed}ms`)
+  clearTimeout(moleTimeout);
+  startMole();
 }
 
 function setGame() {
@@ -23,7 +38,8 @@ function setGame() {
     tile.addEventListener("click", selectTile);
     document.getElementById("board").appendChild(tile)
   }
-  setInterval(setMole, 2000); //2000 milliseconds = 2 seconds
+  startMole();
+  // setInterval(setMole, 2000); //2000 milliseconds = 2 seconds
   setInterval(setPlant, 3000);
 
   startTimer();
@@ -55,7 +71,7 @@ function updateLevel() {
   if (newLevel > level) {
     level = newLevel;
     showLevelUpMessage();
-    // updateSpeed();
+    updateSpeed();
     updateLevelDisplay();
   }
 }
