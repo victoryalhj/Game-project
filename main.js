@@ -143,7 +143,10 @@ function selectTile () {
     
     updateLevel();
   } else if (this == currPlantTile) {
-    document.getElementById("score").innerText = "GAME OVER: " +  score.toString();
-    gameOver = true;
+    score -= 20;
+    if (score <0) score = 0;
+    document.getElementById("score").innerText = "Your Score: " +  score.toString();
+
+    updateLevel();
   }
 }
