@@ -144,9 +144,12 @@ function selectTile () {
     updateLevel();
   } else if (this == currPlantTile) {
     score -= 20;
-    if (score <0) score = 0;
-    document.getElementById("score").innerText = "Your Score: " +  score.toString();
-
-    updateLevel();
+    if (score <0) {
+      score = 0;
+      gameOver = true;
+      document.getElementById("score").innerText = "GAME OVER";
+    }else {
+      document.getElementById("score").innerText = "Your Score: " +  score.toString();
+    }
   }
 }
