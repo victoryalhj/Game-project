@@ -3,6 +3,7 @@
 
 let currentMoleTile;
 let currPlantTile;
+let currBonusTile;
 let score = 0;
 let timeLeft = 60;
 let timeInterval ;
@@ -11,6 +12,7 @@ let moleSpeed = 2000;
 let minMoleSpeed = 500;
 let moleTimeout;
 let gameOver = false;
+
 
 window.onload = function() {
   setGame();
@@ -41,6 +43,9 @@ function setGame() {
   startMole();
   // setInterval(setMole, 2000); //2000 milliseconds = 2 seconds
   setInterval(setPlant, 3000);
+
+  //BonusTile
+  setInterval(setBonus, 7000);
 
   startTimer();
 }
@@ -131,17 +136,38 @@ function setPlant() {
   currPlantTile = document.getElementById(num);
   currPlantTile.appendChild(plant);
 }
+//BonusTile
+function setBonus() {
+  if(gameOver) return;
+  if (currBonusTile) {
+    currBonusTile.innerHTML = "";
+  }
+
+  let bonus = document.createElement("img");
+  bonus.src = "./img/Star.png"
+ 
+  let num = getRandomTile();
+  if (
+   (currentMoleTile && currentMoleTile.id == num)||
+   (currPlantTile && currPlantTile.id == num)
+  ) {
+    return;
+  }
+  currBonusTile = document.getElementById(num);
+  currBonusTile.appendChild(bonus)
+}
 
 // Tile clickable
 function selectTile () {
   if (gameOver) {
     return;
   }
+
   if(this == currentMoleTile) {
     score += 10;
     document.getElementById("score").innerText = "Your Score: " + score.toString();
-    
     updateLevel();
+
   } else if (this == currPlantTile) {
     score -= 20;
     if (score <0) {
@@ -151,5 +177,19 @@ function selectTile () {
     }else {
       document.getElementById("score").innerText = "Your Score: " +  score.toString();
     }
+    updateLevel();
+
+  }else if(this == currBonusTile) {
+    let bonusType = Math.random() < 0.5 ? 'score' : 'time';
+    if (bonusType === 'score') {
+    score += 50;
+    document.getElementById("score").innerText = "Your Score: " + score.toString();
+  }else {
+    timeLeft += 5;
+    document.getElementById("timer").innerText = `Time left: ${timeLeft}s`;
+  }
+  currBonusTile.innerHTML = "";
+  currBonusTile = null;
+  updateLevel();
   }
 }
