@@ -2,7 +2,7 @@
 
 A whack-a-mole inspired game, upgraded with creative rules and levels.
 Built using **HTML, CSS, Vanilla JavaScript only**
-Deployed at: [ Demo Link ](https://molegameproject.netlify.app/)
+Deployed at: [ Demo Link ](https://newmariogame.netlify.app/)
 
 
 ## Game Rules
