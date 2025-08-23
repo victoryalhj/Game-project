@@ -109,11 +109,15 @@ function setMole() {
   let mole = document.createElement("img");
   mole.src = "./img/Mole.png";
 
-  let num = getRandomTile();
-  //Set the plant and mole to avoid the same tile 
-  if (currPlantTile && currPlantTile.id == num) {
-    return;
-  }
+
+  //Set the plant,mole and star to avoid the same tile 
+  let num;
+  do {
+    num = getRandomTile();
+  }while (
+    (currPlantTile && currPlantTile.id === num) ||
+    (currBonusTile && currBonusTile.id === num)
+  );
   currentMoleTile = document.getElementById(num);
   currentMoleTile.appendChild(mole);
 }
@@ -129,10 +133,13 @@ function setPlant() {
   let plant = document.createElement("img");
   plant.src = "./img/Plant.png";
 
-  let num = getRandomTile();
-  if (currentMoleTile && currentMoleTile.id == num) {
-    return;
-  }
+  let num;
+  do {
+    num = getRandomTile();
+  }while (
+    (currentMoleTile && currentMoleTile.id === num) ||
+    (currBonusTile && currBonusTile.id === num)
+  );
   currPlantTile = document.getElementById(num);
   currPlantTile.appendChild(plant);
 }
@@ -146,13 +153,13 @@ function setBonus() {
   let bonus = document.createElement("img");
   bonus.src = "./img/Star.png"
  
-  let num = getRandomTile();
-  if (
-   (currentMoleTile && currentMoleTile.id == num)||
-   (currPlantTile && currPlantTile.id == num)
-  ) {
-    return;
-  }
+  let num;
+  do {
+    num = getRandomTile();
+  }while (
+    (currentMoleTile && currentMoleTile.id === num) ||
+    (currPlantTile && currPlantTile.id === num)
+  )
   currBonusTile = document.getElementById(num);
   currBonusTile.appendChild(bonus)
 }
@@ -193,3 +200,26 @@ function selectTile () {
   updateLevel();
   }
 }
+
+// modal
+document.addEventListener("DOMContentLoaded",() => {
+  const modal = document.getElementById("howToPlayModal");
+  const btn = document.getElementById("howToPlayBtn");
+  const span = document.querySelector(".close");
+
+  btn.addEventListener("click",()=>{
+    modal.style.display = "block";
+  })
+
+  span.addEventListener("click",()=>{
+    modal.style.display = "none"
+  })
+
+  window.addEventListener("click",(event)=> {
+    if(event.target === modal) {
+      modal.style.display = "none"
+    }
+  })
+})
+
+

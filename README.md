@@ -37,7 +37,7 @@ Deployed at: [ Demo Link ](https://newmariogame.netlify.app/)
 
 ## Screenshot
 
-![Game Screenshot](./img/MarioGame.png)
+![Game Screenshot](./img/MarioProject.jpg)
 
 
 ## Tech Stack

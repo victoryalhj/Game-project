@@ -9,12 +9,28 @@
 </head>
 
 <body>
-  <h1>Mario Game</h1>  
-  <h2 id="score">Your Score: 0</h2>
-  <h2 id="level">Your Level: 1</h2>
+  <h1>Mario Game</h1>
+  <div class="score-box">
+    <h2 id="score">Your Score: 0</h2>
+    <h2 id="level">Your Level: 1</h2>
+  </div>
   <h3 id="timer">Time left: 60s</h3>
   <div id="board"></div>
-  <p class="descriptionTile">How to play?</p>
-  <p class="description">Click on the mole to earn scores, but click on the plant to lose scores.</p>
+  <div class="button-container">
+    <button id="howToPlayBtn" class="how-to-play-btn">How to play?</button>
+  </div>
+  <!-- modal -->
+  <div id="howToPlayModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>How to Play ?</h2>
+      <p>☑️ Click on the mole to earn points.</p>
+      <p>❌ Click on the plant and you lose points.</p>
+      <p>⭐ Click on the star to get a bonus! It might give extra points or extra time</p>
+      <p>⏱ You have 60 seconds to score as much as possible.</p>
+      <p>🎯Your score determines your level. Reach higher scores to level up and make the mole appear faster!</p>
+      </p>
+    </div>
+  </div>
 </body>
 </html>
